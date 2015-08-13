@@ -23,6 +23,7 @@
     "chart.js": "^1.0.2",
     "jquery": "^2.1.4",
     "modernizr": "^3.0.0-alpha.4",
-    "react": "^0.13.0"
+    "react": "^0.13.0",
+    "react-router": "^0.13.3"
   }
 }
