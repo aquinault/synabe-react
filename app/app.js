@@ -16,6 +16,7 @@ var React = window.React = require('react'),
     Chart1 = require("./ui/Chart1");
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'url?limit=10000!./logo.png';
 
 
 var Router = require('react-router');
