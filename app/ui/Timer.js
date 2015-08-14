@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+import NavBar from './NavBar';
 
 var Timer = React.createClass({
   getInitialState: function() {
@@ -17,7 +18,12 @@ var Timer = React.createClass({
   },
   render: function() {
     return (
-      <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+      
+      <div>
+        <NavBar active="timer"/>
+        <br/><br/><br/><br/>
+        Seconds Elapsed: {this.state.secondsElapsed}
+      </div>
     );
   }
 });

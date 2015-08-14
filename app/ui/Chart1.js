@@ -2,6 +2,7 @@ var React, Chart1;
 
 React = require("react");
 import Chart from 'chart.js/Chart.js';
+import NavBar from './NavBar';
 
 Chart1 = React.createClass({
   getInitialState: function() {
@@ -54,7 +55,8 @@ Chart1 = React.createClass({
     
     return (
       <div>
-        
+        <NavBar active="chart1" />
+        <br/><br/><br/><br/>
         <canvas id="myChart" width="600" height="400"></canvas>
       </div>
     );
