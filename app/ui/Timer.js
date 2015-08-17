@@ -17,6 +17,7 @@ var Timer = React.createClass({
     clearInterval(this.interval);
   },
   render: function() {
+    
     return (
       
       <div>

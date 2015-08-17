@@ -1,6 +1,9 @@
 'use strict';
 
 var React = require('react');
+var DriveIn = require('react-drive-in');
+
+require('../frontier.mp4');
 
 var Login = React.createClass({
   getInitialState: function() {
@@ -17,12 +20,23 @@ var Login = React.createClass({
   },
   render: function() {
 
+    /*var imgUrl = '/dist/logo.png';
+    var divStyle = {
+      color: 'white',
+      backgroundImage: 'url(' + imgUrl + ')',
+      WebkitTransition: 'all', // note the capital 'W' here
+      msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+    };*/
+
     return (
+       //<DriveIn show="/dist/frontier.mp4" />
       
-      
-      <div className="row">
+      //<div style={divStyle}>
+      <div>
+        <DriveIn show="/dist/frontier.mp4" />
+      <div className="row" >
       <div className="col-lg-4 col-sm-3"></div>
-      <div className="col-lg-4 col-sm-6">
+      <div className="col-lg-4 col-sm-6 jumbotron">
           <form className="form-signin">
             <h2 className="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" className="sr-only">Email address</label>
@@ -38,11 +52,8 @@ var Login = React.createClass({
           </form>
         </div>
         <div className="col-lg-4 col-sm-3"></div>
-        
         </div>
-      
-      
-      
+        </div>
     );
   }
 });

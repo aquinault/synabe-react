@@ -10,6 +10,7 @@ import './bootswatch.less';
 
 var Router = require('react-router');
 var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
 
 // declare our routes and their hierarchy
 var routes = (
@@ -17,7 +18,7 @@ var routes = (
     <Route path="chart1" handler={Chart1}/>
     <Route path="timer" handler={Timer}/>
     <Route path="login" handler={Login}/>
-    
+    <DefaultRoute handler={Login} />
   </Route>
 );
 

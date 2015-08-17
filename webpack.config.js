@@ -30,6 +30,7 @@ module.exports = {
   module: {
       loaders: [
         { test: /\.png$/, loader: 'file?name=[name].[ext]' },
+        { test: /\.mp4$/, loader: 'file?name=[name].[ext]' },
         {
           test: /\.js$/,
           exclude: /node_modules/,
