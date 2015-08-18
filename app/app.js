@@ -15,7 +15,7 @@ var DefaultRoute = Router.DefaultRoute;
 // declare our routes and their hierarchy
 var routes = (
   <Route handler={TodoApp}>
-    <Route path="chart1" handler={Chart1}/>
+    <Route path="chart1" name="chart1" handler={Chart1}/>
     <Route path="timer" handler={Timer}/>
     <Route path="login" handler={Login}/>
     <DefaultRoute handler={Login} />

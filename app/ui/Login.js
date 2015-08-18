@@ -5,8 +5,11 @@ var DriveIn = require('react-drive-in');
 
 var $ = require('jquery');
 //require('../frontier.mp4');
+var Router = require('react-router');
 
 var Login = React.createClass({
+  mixins : [Router.Navigation],
+  
   getInitialState: function() {
     return {data: []};
   },  
@@ -31,13 +34,15 @@ var Login = React.createClass({
     e.preventDefault();
     var email = React.findDOMNode(this.refs.email).value.trim();
     var password = React.findDOMNode(this.refs.password).value.trim();
-    
+    if (!email || !password) {
+      return;
+    }
     let user = {
       username: email,
       password: password
     };
     console.log('user : ' + user);
-    
+
     $.ajax({
       url: '/api/auth/login/',
       dataType: 'json',
@@ -46,23 +51,18 @@ var Login = React.createClass({
       data: user,
       success: function(data) {
         this.setState({data: data});
+        
         console.log('user auth OK');
         console.log(data);
+        this.transitionTo('chart1');
+
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error('/api/auth/login/', status, err.toString());
+        this.setState({data: {loginFailed :true}});
+        console.log('/api/auth/login/', status, err.toString());
       }.bind(this)
     });
-    
-    
-    
-    /*var text = React.findDOMNode(this.refs.text).value.trim();
-    if (!text || !author) {
-      return;
-    }*/
-    // TODO: send request to the server
-    //React.findDOMNode(this.refs.author).value = '';
-    //React.findDOMNode(this.refs.text).value = '';
+  
     return;
   },  
   render: function() {
@@ -74,6 +74,8 @@ var Login = React.createClass({
       WebkitTransition: 'all', // note the capital 'W' here
       msTransition: 'all' // 'ms' is the only lowercase vendor prefix
     };*/
+
+    
 
     return (
        //<DriveIn show="/dist/frontier.mp4" />
@@ -87,7 +89,7 @@ var Login = React.createClass({
       <div className="col-lg-4 col-sm-3"></div>
       <div className="col-lg-4 col-sm-6 jumbotron">
           <form className="form-signin" onSubmit={this.handleSubmit}>
-            <h2 className="form-signin-heading">Please sign in</h2>
+            <h2 className="form-signin-heading">Login</h2>
             <label for="inputEmail" className="sr-only">Email address</label>
             
             <input type="string" id="inputEmail" className="form-control" placeholder="Email address" ref="email" required autofocus />
@@ -100,9 +102,16 @@ var Login = React.createClass({
             </div>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
+          
+          <br/>
+          {this.state.data.loginFailed && (<div className="alert alert-warning" role="alert">Login failed</div>)}  
+          
+          
         </div>
         <div className="col-lg-4 col-sm-3"></div>
         </div>
+        
+        
         </div>
     );
   }
