@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname + "/app",
   entry: [
-    'webpack-dev-server/client?http://react-webpack-aquinault.c9.io:8080',
+    'webpack-dev-server/client?http://synabe-full-aquinault.c9.io/:8080',
     'webpack/hot/only-dev-server',
     './app.js',
     './index.html',
@@ -61,7 +61,10 @@ module.exports = {
         host: '0.0.0.0',
         noInfo: false, //  --no-info option
         hot: true,
-        inline: true
+        inline: true,
+        proxy: {
+          '/api/*': 'http://localhost:3000/'
+        },        
     }
 }
 
