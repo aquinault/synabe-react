@@ -5,8 +5,9 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname + "/app",
   entry: [
-    'webpack-dev-server/client?http://synabe-full-aquinault.c9.io/:8080',
-    'webpack/hot/only-dev-server',
+    //'webpack-dev-server/client?http://synabe-full-aquinault.c9.io:8080/',
+    //'webpack-dev-server/client?http://localhost:8080',
+    //'webpack/hot/only-dev-server',
     './app.js',
     './index.html',
     //'./bower_components/modernizr/modernizr.js',
@@ -58,10 +59,11 @@ module.exports = {
     },
     devServer: {
         port: 8080,
-        host: '0.0.0.0',
+        //host: '0.0.0.0',
+        host: process.env.IP,
         noInfo: false, //  --no-info option
-        hot: true,
-        inline: true,
+        hot: false,
+        inline: false,
         proxy: {
           '/api/*': 'http://localhost:3000/'
         },        
