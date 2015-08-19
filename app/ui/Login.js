@@ -50,16 +50,21 @@ var Login = React.createClass({
       type: 'POST',
       data: user,
       success: function(data) {
-        this.setState({data: data});
+        this.setState({data: {responseJSON : data}});
         
         console.log('user auth OK');
         console.log(data);
-        this.transitionTo('chart1');
+        
+        setTimeout( ()=>this.transitionTo('chart1'), 2000 );
+        
+        //this.transitionTo('chart1');
 
       }.bind(this),
       error: function(xhr, status, err) {
-        this.setState({data: {loginFailed :true}});
+        //this.setState({data: {loginFailed :true, responseJSON : xhr.responseJSON}});
+        this.setState({data: {responseJSON : xhr.responseJSON}});
         console.log('/api/auth/login/', status, err.toString());
+        console.log(xhr);
       }.bind(this)
     });
   
@@ -102,13 +107,15 @@ var Login = React.createClass({
             </div>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
-          
-          <br/>
-          {this.state.data.loginFailed && (<div className="alert alert-warning" role="alert">Login failed</div>)}  
-          
-          
         </div>
         <div className="col-lg-4 col-sm-3"></div>
+        
+        <div className="col-lg-12 col-sm-12">
+          {this.state.data.responseJSON && this.state.data.responseJSON.error && (<div className="alert alert-warning" role="alert">{this.state.data.responseJSON.error.message}</div>)}  
+          {this.state.data.responseJSON && this.state.data.responseJSON.data && (<div className="alert alert-success" role="alert">{this.state.data.responseJSON.data.message}</div>)}  
+        </div>
+        
+        
         </div>
         
         
