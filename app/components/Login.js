@@ -8,15 +8,34 @@ var $ = require('jquery');
 var Router = require('react-router');
 
 var TodoStore = require('../stores/TodoStore');
+var TodoApp = require('./todo/TodoApp.react');
 
+var UserStore = require('../stores/UserStore');
+var UserActions = require('../actions/UserActions');
+
+
+/**
+ * Retrieve the current TODO data from the TodoStore
+ */
+function getTodoState() {
+  return {
+    data: [],
+    user: UserStore.getUser(),
+    allTodos: TodoStore.getAll(),
+    areAllComplete: TodoStore.areAllComplete()
+  };
+}
 
 var Login = React.createClass({
   mixins : [Router.Navigation],
   
   getInitialState: function() {
-    return {data: []};
+    return getTodoState();
   },  
   componentDidMount: function() {
+    TodoStore.addChangeListener(this._onChange);
+    UserStore.addChangeListener(this._onChange);
+    
     $.ajax({
       //url: this.props.url,
       url: '/api/auth/users',
@@ -32,6 +51,8 @@ var Login = React.createClass({
     });    
   },
   componentWillUnmount: function() {
+    TodoStore.removeChangeListener(this._onChange);
+    UserStore.removeChangeListener(this._onChange);
   },
   handleSubmit: function(e) {
     e.preventDefault();
@@ -45,7 +66,9 @@ var Login = React.createClass({
       password: password
     };
     console.log('user : ' + user);
+    UserActions.login(email, password);
 
+    /*
     $.ajax({
       url: '/api/auth/login/',
       dataType: 'json',
@@ -58,7 +81,13 @@ var Login = React.createClass({
         console.log('user auth OK');
         console.log(data);
         
-        setTimeout( ()=>this.transitionTo('chart1'), 2000 );
+        
+        if (email.trim() && password.trim()){
+          UserActions.login(email, password);
+          console.log('userActions call');
+        }
+        
+        //setTimeout( ()=>this.transitionTo('chart1'), 2000 );
         
         //this.transitionTo('chart1');
 
@@ -70,9 +99,22 @@ var Login = React.createClass({
         console.log(xhr);
       }.bind(this)
     });
+    */
   
     return;
   },  
+    /**
+   * Event handler for 'change' events coming from the TodoStore
+   */
+  _onChange: function() {
+    this.setState(getTodoState());
+    console.log('_onChange');
+    
+    if(this.state.user.isAuthentified === true) {
+      setTimeout( ()=>this.transitionTo('chart1'), 2000 );  
+    }
+    
+  },
   render: function() {
 
     /*var imgUrl = '/dist/logo.png';
@@ -93,6 +135,7 @@ var Login = React.createClass({
       
       
       <div>
+      user: {this.state.user.username}
       <div className="row" >
       <div className="col-lg-4 col-sm-3"></div>
       <div className="col-lg-4 col-sm-6 jumbotron">
@@ -114,11 +157,15 @@ var Login = React.createClass({
         <div className="col-lg-4 col-sm-3"></div>
         
         <div className="col-lg-12 col-sm-12">
-          {this.state.data.responseJSON && this.state.data.responseJSON.error && (<div className="alert alert-warning" role="alert">{this.state.data.responseJSON.error.message}</div>)}  
-          {this.state.data.responseJSON && this.state.data.responseJSON.data && (<div className="alert alert-success" role="alert">{this.state.data.responseJSON.data.message}</div>)}  
+          { (this.state.user.isAuthentified === false) && (<div className="alert alert-warning" role="alert">{this.state.user.message}</div>)}  
+          { (this.state.user.isAuthentified === true) && (<div className="alert alert-success" role="alert">{this.state.user.message}</div>)}  
         </div>
         
-        
+        {this.state.allTodos}
+        <br/>
+        {this.state.areAllComplete}
+        <br/>
+        <TodoApp />
         </div>
         
         
