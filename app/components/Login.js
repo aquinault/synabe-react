@@ -7,6 +7,9 @@ var $ = require('jquery');
 //require('../frontier.mp4');
 var Router = require('react-router');
 
+var TodoStore = require('../stores/TodoStore');
+
+
 var Login = React.createClass({
   mixins : [Router.Navigation],
   

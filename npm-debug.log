@@ -1,0 +1,76 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'keymirrror',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 warn package.json synabe-react@0.0.0 No repository field.
+5 warn package.json synabe-react@0.0.0 No README data
+6 warn package.json babel-core@5.8.22 No README data
+7 warn package.json react-drive-in@1.5.0 scripts['server'] should probably be scripts['start'].
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'keymirrror', null ]
+10 verbose cache add name=undefined spec="keymirrror" args=["keymirrror",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'keymirrror',
+11 verbose parsed url   path: 'keymirrror',
+11 verbose parsed url   href: 'keymirrror' }
+12 silly lockFile c4b3a47b-keymirrror keymirrror
+13 verbose lock keymirrror /home/ubuntu/.npm/c4b3a47b-keymirrror.lock
+14 silly lockFile c4b3a47b-keymirrror keymirrror
+15 silly lockFile c4b3a47b-keymirrror keymirrror
+16 verbose addNamed [ 'keymirrror', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 4f6e3a38-keymirrror keymirrror@
+19 verbose lock keymirrror@ /home/ubuntu/.npm/4f6e3a38-keymirrror.lock
+20 silly addNameRange { name: 'keymirrror', range: '*', hasData: false }
+21 verbose request where is /keymirrror
+22 verbose request registry https://registry.npmjs.org/
+23 verbose request id 1e5ab424b07790db
+24 verbose url raw /keymirrror
+25 verbose url resolving [ 'https://registry.npmjs.org/', './keymirrror' ]
+26 verbose url resolved https://registry.npmjs.org/keymirrror
+27 verbose request where is https://registry.npmjs.org/keymirrror
+28 info trying registry request attempt 1 at 09:49:34
+29 http GET https://registry.npmjs.org/keymirrror
+30 http 404 https://registry.npmjs.org/keymirrror
+31 silly registry.get cb [ 404,
+31 silly registry.get   { 'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '2',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     date: 'Thu, 20 Aug 2015 09:49:35 GMT',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     connection: 'keep-alive',
+31 silly registry.get     'x-served-by': 'cache-ams4145-AMS',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1440064174.989168,VS0,VE97' } ]
+32 silly lockFile 4f6e3a38-keymirrror keymirrror@
+33 silly lockFile 4f6e3a38-keymirrror keymirrror@
+34 error 404 Not Found
+34 error 404
+34 error 404 'keymirrror' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'synabe-react'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Linux 3.14.13-c9
+36 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "keymirrror" "--save"
+37 error cwd /home/ubuntu/workspace/synabe-react
+38 error node -v v0.10.35
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

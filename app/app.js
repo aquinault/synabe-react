@@ -1,8 +1,8 @@
 var React = window.React = require('react'),
-    Timer = require("./ui/Timer"),
+    Timer = require("./components/Timer"),
     mountNode = document.getElementById("app"),
-    Login = require("./ui/Login"),
-    Chart1 = require("./ui/Chart1");
+    Login = require("./components/Login"),
+    Chart1 = require("./components/Chart1");
     
 //import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootswatch/paper/bootstrap.css';

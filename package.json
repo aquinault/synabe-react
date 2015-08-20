@@ -23,10 +23,13 @@
     "bootstrap": "^3.3.5",
     "bootswatch": "^3.3.5",
     "chart.js": "^1.0.2",
+    "flux": "^2.1.1",
     "jquery": "^2.1.4",
+    "keymirror": "^0.1.1",
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "modernizr": "^3.0.0-alpha.4",
+    "object-assign": "^4.0.0",
     "react": "^0.13.0",
     "react-drive-in": "^1.5.0",
     "react-router": "^0.13.3"
