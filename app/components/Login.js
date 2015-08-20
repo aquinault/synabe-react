@@ -61,46 +61,8 @@ var Login = React.createClass({
     if (!email || !password) {
       return;
     }
-    let user = {
-      username: email,
-      password: password
-    };
-    console.log('user : ' + user);
     UserActions.login(email, password);
 
-    /*
-    $.ajax({
-      url: '/api/auth/login/',
-      dataType: 'json',
-      //contentType: 'application/json',
-      type: 'POST',
-      data: user,
-      success: function(data) {
-        this.setState({data: {responseJSON : data}});
-        
-        console.log('user auth OK');
-        console.log(data);
-        
-        
-        if (email.trim() && password.trim()){
-          UserActions.login(email, password);
-          console.log('userActions call');
-        }
-        
-        //setTimeout( ()=>this.transitionTo('chart1'), 2000 );
-        
-        //this.transitionTo('chart1');
-
-      }.bind(this),
-      error: function(xhr, status, err) {
-        //this.setState({data: {loginFailed :true, responseJSON : xhr.responseJSON}});
-        this.setState({data: {responseJSON : xhr.responseJSON}});
-        console.log('/api/auth/login/', status, err.toString());
-        console.log(xhr);
-      }.bind(this)
-    });
-    */
-  
     return;
   },  
     /**

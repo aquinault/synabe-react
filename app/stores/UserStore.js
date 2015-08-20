@@ -27,8 +27,8 @@ function login(username, password) {
     type: 'POST',
     data: user,
     success: function(data) {
-      console.log('user auth OK');
-      console.log(data);
+      //console.log('user auth OK');
+      //console.log(data);
       
       _user = {
         username: username,
@@ -37,10 +37,9 @@ function login(username, password) {
         message: data.data.message
       };
       UserStore.emitChange();
-      console.log(user);
+      //console.log(user);
     }.bind(this),
     error: function(xhr, status, err) {
-      console.log(xhr);
       _user = {       
         username: username,
         password: password,
@@ -49,8 +48,7 @@ function login(username, password) {
       };
       UserStore.emitChange();
       
-      console.log('/api/auth/login/', status, err.toString());
-      console.log(xhr);
+      //console.log('/api/auth/login/', status, err.toString());
     }.bind(this)
   });  
   
@@ -100,7 +98,6 @@ AppDispatcher.register(function(action) {
       if (username !== '' && password !== '') {
         login(username, password);
         //UserStore.emitChange();
-        console.log('UserStore.emitChange()');
       }
       break;
 

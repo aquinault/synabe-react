@@ -1,19 +1,33 @@
 'use strict';
 
 var React = require('react');
+var UserStore = require('../stores/UserStore');
+
+
+function getTodoState() {
+  return {
+    user: UserStore.getUser(),
+  };
+}
 
 var NavBar = React.createClass({
   getInitialState: function() {
-    return {secondsElapsed: 0};
+    return getTodoState();
   },
   tick: function() {
     //this.setState({secondsElapsed: this.state.secondsElapsed + 1});
   },
   componentDidMount: function() {
-    //this.interval = setInterval(this.tick, 1000);
+    UserStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    //clearInterval(this.interval);
+    UserStore.removeChangeListener(this._onChange);
+  },
+    /**
+   * Event handler for 'change' events coming from the TodoStore
+   */
+  _onChange: function() {
+    this.setState(getTodoState());
   },
   render: function() {
     // Ugly
@@ -50,14 +64,12 @@ var NavBar = React.createClass({
               </ul>
               <ul className="nav navbar-nav navbar-right">
                   <li>
-                    <a id="user" href="/account"> Account</a>
+                    <a id="user" href="/account"> {this.state.user.username} </a>
                   </li>
-                  <li>
-                    <a href="/logout">Logout</a>
-                  </li>
-                  <li>
-                    <a href="/#/login"> Log In </a>
-                  </li>
+                  
+                  { (this.state.user.isAuthentified === true) && (<li><a href="/logout">Logout</a></li>)}  
+                  
+                 { (this.state.user.isAuthentified !==  true) && (<li><a href="/#/login"> Log In</a></li>)}  
               </ul>
             </div>
           </div>
