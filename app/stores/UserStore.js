@@ -40,11 +40,23 @@ function login(username, password) {
       //console.log(user);
     }.bind(this),
     error: function(xhr, status, err) {
+      
+      console.log(xhr);
+      /*
+      let message;
+      if(xhr.status === 502 ) {
+        message = xhr.statusText;
+      } else {
+        message = xhr.responseJSON.error.message;
+      }
+      */
+      let message = (xhr.status === 502) ? xhr.statusText : xhr.responseJSON.error.message;
+      
       _user = {       
         username: username,
         password: password,
         isAuthentified: false,
-        message: xhr.responseJSON.error.message
+        message: message
       };
       UserStore.emitChange();
       
