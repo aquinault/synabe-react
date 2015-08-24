@@ -13,7 +13,6 @@ var TodoApp = require('./todo/TodoApp.react');
 var UserStore = require('../stores/UserStore');
 var UserActions = require('../actions/UserActions');
 
-
 /**
  * Retrieve the current TODO data from the TodoStore
  */
